@@ -1012,7 +1012,7 @@ do
     getFlags = function(self)
       return {
         "--ovcopts-add=threads=" .. tostring(options.libvpx_threads),
-	"--ovcopts-add=cpu-used=4",
+	"--ovcopts-add=cpu-used=6",
         "--ovcopts-add=row-mt=1",
         "--ovcopts-add=tiles=2x2"
       }
