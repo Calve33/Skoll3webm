@@ -54,7 +54,7 @@ local options = {
 	-- If set, writes the video's filename to the "Title" field on the metadata.
 	write_filename_on_metadata = false,	
 	-- Set the number of encoding threads, for codecs libvpx and libvpx-vp9
-	libvpx_threads = 4,
+	libvpx_threads = 6,
 	additional_flags = "",
 	-- Constant Rate Factor (CRF). The value meaning and limits may change,
 	-- from codec to codec. Set to -1 to disable.
@@ -1012,7 +1012,7 @@ do
     getFlags = function(self)
       return {
         "--ovcopts-add=threads=" .. tostring(options.libvpx_threads),
-	"--ovcopts-add=cpu-used=6",
+        "--ovcopts-add=cpu-used=4",
         "--ovcopts-add=row-mt=1",
         "--ovcopts-add=tiles=2x2"
       }
