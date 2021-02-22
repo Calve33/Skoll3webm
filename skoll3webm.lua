@@ -13,7 +13,7 @@ local options = {
 	-- backslashes as a path separator. Examples of valid inputs for this field
 	-- would be: [[]] (the default, empty value), [[C:\Users\John]] (on Windows),
 	-- and [[/home/john]] (on Unix-like systems eg. Linux).
-	output_directory = [[/home/maximl/Видео/webms and mp4/]],
+	output_directory = [[]],
 	run_detached = false,
 	-- Template string for the output file
 	-- %f - Filename, with extension
