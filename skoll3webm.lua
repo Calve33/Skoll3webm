@@ -1055,7 +1055,10 @@ do
   local _base_0 = {
     getFlags = function(self)
       return {
-        "--ovcopts-add=threads=" .. tostring(options.libvpx_threads)
+        "--ovcopts-add=threads=" .. tostring(options.libvpx_threads),
+	"--ovcopts-add=cpu-used=4",
+        "--ovcopts-add=row-mt=1",
+        "--ovcopts-add=tiles=2x1"
       }
     end
   }
