@@ -59,6 +59,7 @@ local options = {
 	-- Constant Rate Factor (CRF). The value meaning and limits may change,
 	-- from codec to codec. Set to -1 to disable.
 	crf = 15,
+	av1_speed = 4,
 	-- Useful for flags that may impact output filesize, such as qmin, qmax etc
 	-- Won't be applied when strict_filesize_constraint is on.
 	non_strict_additional_flags = "",
@@ -1809,6 +1810,11 @@ encode = function(region, startTime, endTime)
   append(command, {
     "--o=" .. tostring(out_path)
   })
+  if format.videoCodec == "libaom-av1" then
+    append(command, {
+        "--ovcopts-add=cpu-used=" .. options.av1_speed
+    })
+  end
   if options.twopass and format.supportsTwopass and not is_stream then
     local first_pass_cmdline
     do
@@ -2323,6 +2329,31 @@ do
           }
         }
       }
+      local av1SpeedOpts = {
+        possibleValues = {
+          {
+            0
+          },
+          {
+            1
+          },
+          {
+            2
+          },
+          {
+            3
+          },
+          {
+            4
+          },
+          {
+            5
+          },
+          {
+            6
+          }
+        }
+      }
       local formatIds = {
         "webm-vp8",
         "webm-vp9",
@@ -2384,6 +2415,10 @@ do
         {
           "fps",
           Option("list", "FPS", options.fps, fpsOpts)
+        },
+        {
+          "av1_speed",
+          Option("list", "Encoding speed (AV1 only)", options.av1_speed, av1SpeedOpts)
         }
       }
       self.keybinds = {
